@@ -2,12 +2,28 @@
 #include <string>
 #include <regex>
 #include <iostream>
-int getDay(std::string date);
-int getMonth(std::string date);
-int getYear(std::string date);
+
+class DateValidator{
+public:
+	DateValidator();
+	~DateValidator();
+	int getDay(std::string date);
+	int getMonth(std::string date);
+	int getYear(std::string date);
+	bool dateCorrect(std::string date);
+	int getDayOfWeek_date(std::string date);
+	int getDayOfWeek_plate(std::string plate);
+};
+
+DateValidator::DateValidator() {
+
+}
+DateValidator::~DateValidator() {
+
+}
 
 //Checks if the date is correct
-bool dateCorrect(std::string date){
+bool DateValidator::dateCorrect(std::string date){
 
 	bool status = true;
 	int day = getDay(date);
@@ -42,7 +58,7 @@ bool dateCorrect(std::string date){
 	return status;
 }
 //Returns the day of the week for a given date
-int getDayOfWeek_date(std::string date) {
+int DateValidator::getDayOfWeek_date(std::string date) {
 
 	struct tm time;
 	memset(&time, 0, sizeof(time));
@@ -55,7 +71,7 @@ int getDayOfWeek_date(std::string date) {
 	return time.tm_wday;
 }
 //Returns the day of the week depending on the plate's last digit
-int getDayOfWeek_plate(std::string plate) {
+int DateValidator::getDayOfWeek_plate(std::string plate) {
 	int dig = plate.back() - 48;//For most encodings, numbers go from 48 to 57
 	if ((dig == 1) || (dig == 2)) {
 		return 0;
@@ -74,7 +90,7 @@ int getDayOfWeek_plate(std::string plate) {
 	}
 }
 
-int getDay(std::string date) {
+int DateValidator::getDay(std::string date) {
 	std::regex aDate("(\\d{2})/(\\d{2})/(\\d{4})");
 
 	if (std::regex_match(date, aDate)) {
@@ -82,14 +98,14 @@ int getDay(std::string date) {
 	}
 }
 
-int getMonth(std::string date){
+int DateValidator::getMonth(std::string date){
 	std::regex aDate("(\\d{2})/(\\d{2})/(\\d{4})");
 
 	if (std::regex_match(date, aDate)) {
 		return std::stoi(std::regex_replace(date, aDate, "$02"));
 	}
 }
-int getYear(std::string date) {
+int DateValidator::getYear(std::string date) {
 	std::regex aDate("(\\d{2})/(\\d{2})/(\\d{4})");
 
 	if (std::regex_match(date, aDate)) {

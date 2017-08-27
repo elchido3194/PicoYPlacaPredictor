@@ -16,10 +16,11 @@ namespace UnitTests
 			//Arrange
 			std::string plate1 = "PBX-214"; 
 			std::string plate2 = "PBX-2124"; 
-			//std::string plate3 = "AAA-AAAA"; 
+			//std::string plate3 = "AAA-AAAA";
+			PlateValidator Pv;
 			//Act
-			bool res1 = plateIsCorrect(plate1);
-			bool res2 = plateIsCorrect(plate2);
+			bool res1 = Pv.plateIsCorrect(plate1);
+			bool res2 = Pv.plateIsCorrect(plate2);
 
 			//Assert
 			Assert::IsTrue(res1);

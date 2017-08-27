@@ -12,8 +12,9 @@ std::string printIntro() {
 }
 
 std::string printInformation(Vehicle V, std::string date, std::string time) {
+	DateValidator Dv;
 	std::string weekday;
-	switch (getDayOfWeek_date(date))
+	switch (Dv.getDayOfWeek_date(date))
 	{
 	case 0:
 		weekday = "Sunday";

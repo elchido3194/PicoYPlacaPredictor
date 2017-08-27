@@ -9,22 +9,25 @@
 
 int main(void) {
 	std::string plate, date, time;
+	DateValidator DValidator;
+	TimeValidator TValidator;
+	PlateValidator PValidator;
 	LOG(printIntro());
 	do {
 		do {
 			LOG("Please enter a CORRECT plate number:");
 			std::cin >> plate;
-		} while (!plateIsCorrect(plate));
+		} while (!PValidator.plateIsCorrect(plate));
 
 		do {
 			LOG("Please enter a CORRECT date:");
 			std::cin >> date;
-		} while (!dateCorrect(date));
+		} while (!DValidator.dateCorrect(date));
 
 		do {
 			LOG("Please enter a CORRECT time:");
 			std::cin >> time;
-		} while (!isTimeCorrect(time));
+		} while (!TValidator.isTimeCorrect(time));
 
 		PyPPredictor PyP;
 		Vehicle Ve(plate);

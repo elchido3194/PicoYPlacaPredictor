@@ -15,8 +15,9 @@ namespace UnitTests
 		{
 			//Arrange
 			std::string time = "09:38";
+			TimeValidator Tv;
 			//Act
-			bool res = isTimeCorrect(time);
+			bool res = Tv.isTimeCorrect(time);
 			//Assert
 			Assert::IsTrue(res);
 		}
@@ -25,8 +26,9 @@ namespace UnitTests
 			//Arrange
 			std::string time = "09:15";
 			int expected = 9;
+			TimeValidator Tv;
 			//Act
-			int result = getHour(time);
+			int result = Tv.getHour(time);
 			//Assert
 			Assert::AreEqual(expected, result);
 		}
@@ -34,16 +36,18 @@ namespace UnitTests
 			//Arrange
 			std::string time = "09:15";
 			int expected = 15;
+			TimeValidator Tv;
 			//Act
-			int result = getMin(time);
+			int result = Tv.getMin(time);
 			//Assert
 			Assert::AreEqual(expected, result);
 		}
 		TEST_METHOD(TestrestrictedTime) {
 			//Arrange
 			std::string time = "09:15";
+			TimeValidator Tv;
 			//Act
-			bool result = restrictedTime(time);
+			bool result = Tv.restrictedTime(time);
 			//Assert
 			Assert::IsTrue(result);
 		}

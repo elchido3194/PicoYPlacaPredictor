@@ -2,10 +2,23 @@
 #include <iostream>
 #include <regex>
 
-int getHour(std::string time);
-int getMin(std::string time);
+class TimeValidator {
+public:
+	TimeValidator();
+	~TimeValidator();
+	int getHour(std::string time);
+	int getMin(std::string time);
+	bool isTimeCorrect(std::string time);
+	bool restrictedTime(std::string time);
+};
+TimeValidator::TimeValidator(){
 
-bool isTimeCorrect(std::string time) {
+}
+TimeValidator::~TimeValidator(){
+
+}
+
+bool TimeValidator::isTimeCorrect(std::string time) {
 	//time should be hh:mm
 
 	bool r = false;
@@ -17,7 +30,7 @@ bool isTimeCorrect(std::string time) {
 	return r;
 }
 
-int getHour(std::string time) {
+int TimeValidator::getHour(std::string time) {
 	std::regex aTime("(\\d{2})\:(\\d{2})");
 
 	if (std::regex_match(time, aTime)) {
@@ -25,7 +38,7 @@ int getHour(std::string time) {
 
 	}
 }
-int getMin(std::string time) {
+int TimeValidator::getMin(std::string time) {
 
 	std::regex aTime("(\\d{2})\:(\\d{2})");
 	if (std::regex_match(time, aTime)) {
@@ -34,7 +47,7 @@ int getMin(std::string time) {
 	}
 }
 
-bool restrictedTime(std::string time) {
+bool TimeValidator::restrictedTime(std::string time) {
 
 	bool r = false;
 	int minutes = getHour(time) * 60 + getMin(time);
